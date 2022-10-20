@@ -42,35 +42,35 @@ When a post status changes to `publish` from any other status
 
 Links to the published post
 
-![published](/uploads/398ecaea9bfd60928dd2ec16e8167d39/published.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851051-d193861b-2971-4a44-b046-eafbaae2a59c.png)
 
 ### Unpublished
 When a post status changes to `draft` from `publish`
 
 Links to the edit screen of the post
 
-![unpublished](/uploads/d7594f8b889c2156a6e2586a0197a580/unpublished.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851083-a9655bc7-af2a-4752-8709-f49c2fbbbbc9.png)
 
 ### Scheduled
 When a post status changes to `future` from another status that is not `future`
 
 Links to the scheduled post and includes link to [timeanddate.com](https://www.timeanddate.com) to convert publish time to timezones for Los Angeles, New York, and Paris ([Example](https://www.timeanddate.com/worldclock/converter.html?iso=20221101T033000&p1=137&p2=179&p3=195))
 
-![scheduled](/uploads/ceec91a64780c78249dc3052a0a11763/scheduled.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851141-9fc9802d-15bb-4a04-88de-7c5c29e454b6.png)
 
 ### Unscheduled
 When a post status changes to anything except `publish` or `future` from `future`
 
 Links to the edit screen of the post
 
-![unscheduled](/uploads/32e65712415b32169e66c5e476af9551/unscheduled.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851168-e6932de0-7c17-472c-8fbb-a38684dd02ac.png)
 
 ### Trashed
 When a post status changes to `trash` from `publish`
 
 Links to the trashed posts screen for the post type
 
-![trashed](/uploads/35890dda22108bdcdfa49cf7c2e6c185/trashed.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851191-42dfb77b-39a6-4e91-9c31-848d08070377.png)
 
 ### Updated
 When a post status changes to `publish` from `publish` and there is non-empty `$_POST` data sent to the server
@@ -79,9 +79,9 @@ When a post status changes to `publish` from `publish` and there is non-empty `$
 
 Links to the updated post and includes a link to the post revision screen in WP Admin
 
-![updated](/uploads/b09e098b7782d4dc4bcb516c14880012/updated.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851210-7178c008-9adc-4e72-b051-8c235d2128b0.png)
 
-![updated-diff](/uploads/e250858d42af3f712681532064da9ea7/updated-diff.jpg)
+![image](https://user-images.githubusercontent.com/867430/196851221-32ce0f43-278f-4a10-86d0-293ef42dcbe9.png)
 
 ## How do I enable post types to support Slack notifications?
 
