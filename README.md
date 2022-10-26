@@ -149,11 +149,13 @@ function filter_rh_slack_post_notification_args( $slack_args = array(), $new_sta
     return $slack_args;
 }
 add_filter( 'rh/slack/post_notification/args', 'filter_rh_slack_post_notification_args' );
+```
 
 ### `rh/slack/send_message/args`
 Modify the Slack arguments before any Slack message is sent. This comes in handy when you use the `RH_Slack::send_message()` method or you want to ensure Slack messages don't get sent to public channels when you're testing.
 
 Example:
+
 ```
 function filter_rh_slack_send_message_args( $slack_args = array() ) {
     // If the environemnt is 'development' send all Slack messages to the 'dev-alerts' channel and name the bot 'Dev Bot'
