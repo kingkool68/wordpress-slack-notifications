@@ -164,3 +164,4 @@ function filter_rh_slack_send_message_args( $slack_args = array() ) {
     return $slack_args;
 }
 add_filter( 'rh/slack/send_message/args', 'filter_rh_slack_send_message_args' );
+```
