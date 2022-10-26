@@ -95,9 +95,72 @@ There is a safety in place to ensure Slack notifications don't get sent in non-p
 ## Filters
 
 ### `rh/slack/notification_post_types`
+Modify which post types support Slack notifications.
+
+Example:
+```
+function ilter_rh_slack_notification_post_types( $post_types = array() ) {
+    // Enable Slack notification whenever the book post type content is modified
+    $post_types[] = 'book';
+    return $post_types;
+}
+add_filter( 'rh/slack/notification_post_types', 'filter_rh_slack_notification_post_types' );
+```
 
 ### `rh/slack/post_notification/message`
+Modify the Slack message before the notification is sent.
+
+Example:
+```
+function filter_rh_slack_post_notification_message( $message = '', $new_status = '', $old_status = '', $post ) {
+    // Don't send a post updated Slack notification
+    if ( $new_status = 'publish' && $old_status = 'publish' ) {
+        $message = ''; // Returning an empty string cancels sending the message
+    }
+
+    // Change the Slack message when a post is scheduled
+    if ( $new_status === 'future' && $old_status !== 'future' ) {
+        $the_post_title = get_the_title( $post );
+		$the_post_title = html_entity_decode( $the_post_title );
+		$the_permalink  = get_permalink( $post );
+        $message        = "<$the_permalink|$the_post_title> has been scheduled";
+    }
+
+    return $message;
+}
+add_filter( 'rh/slack/post_notification/message', 'filter_rh_slack_post_notification_message' );
+```
 
 ### `rh/slack/post_notification/args`
+Modify the Slack arguments before a notification is sent.
+
+Example:
+```
+function filter_rh_slack_post_notification_args( $slack_args = array(), $new_status = '', $old_status = '', $post ) {
+    // Change the icon for when a post is trashed
+    if ( $new_status === 'trash' && $old_status === 'publish' ) {
+        $slack_args['icon_emoji'] = ':poop:';
+    }
+
+    // Change the Slack bot username when the post type is Transformers
+    if ( $post->post_type === 'transformers' ) {
+        $slack_args['username'] = 'Optimus Prime';
+    }
+    return $slack_args;
+}
+add_filter( 'rh/slack/post_notification/args', 'filter_rh_slack_post_notification_args' );
 
 ### `rh/slack/send_message/args`
+Modify the Slack arguments before any Slack message is sent. This comes in handy when you use the `RH_Slack::send_message()` method or you want to ensure Slack messages don't get sent to public channels when you're testing.
+
+Example:
+```
+function filter_rh_slack_send_message_args( $slack_args = array() ) {
+    // If the environemnt is 'development' send all Slack messages to the 'dev-alerts' channel and name the bot 'Dev Bot'
+    if ( wp_get_environment_type() === 'development' ) {
+        $slack_args['channel']  = 'dev-alerts';
+        $slack_args['username'] = 'Dev Bot';
+    }
+    return $slack_args;
+}
+add_filter( 'rh/slack/send_message/args', 'filter_rh_slack_send_message_args' );
